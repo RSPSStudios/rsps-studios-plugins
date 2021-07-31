@@ -9,4 +9,5 @@ pluginManagement {
 rootProject.name = "RspsStudiosPlugins"
 
 include("osrs-plugin")
+include("osrs-map-packer")
 
