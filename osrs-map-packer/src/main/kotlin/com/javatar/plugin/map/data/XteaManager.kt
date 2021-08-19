@@ -11,6 +11,8 @@ import kotlin.io.path.readText
 class XteaManager {
 
     val regionKeys = SimpleMapProperty<Int, RegionKey>(FXCollections.observableHashMap())
+    val replacedKeys  = SimpleMapProperty<Int, RegionKey>(FXCollections.observableHashMap())
+
     val gson = Gson()
 
     fun load(location: String) : Boolean {
@@ -18,6 +20,7 @@ class XteaManager {
         try {
             val map = gson.fromJson<List<RegionKey>>(path.readText(), object : TypeToken<List<RegionKey>>(){}.type)
             regionKeys.putAll(map.associateBy { it.mapsquare })
+            println("Loaded ${regionKeys.size} xteas.")
         } catch (e: Exception) {
             e.printStackTrace()
             return false
@@ -26,10 +29,20 @@ class XteaManager {
     }
 
     fun generateXteaFile(location: String) {
-        val keys = regionKeys.get()
-        if(keys != null && keys.isNotEmpty()) {
-            val list = keys.values
+        val map = HashMap(regionKeys)
+        map.putAll(replacedKeys)
+        if(map.isNotEmpty()) {
+            val list = map.values
             Files.write(Path.of(location.replace("xteas.json", "newXteas.json")), gson.toJson(list).toByteArray())
+        }
+    }
+
+    fun generateXteaFileTo(location: String) {
+        val map = HashMap(regionKeys)
+        map.putAll(replacedKeys)
+        if(map.isNotEmpty()) {
+            val list = map.values
+            Files.write(Path.of(location, "newxteas.json"), gson.toJson(list).toByteArray())
         }
     }
 

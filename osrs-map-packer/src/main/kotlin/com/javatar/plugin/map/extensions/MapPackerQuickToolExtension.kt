@@ -16,23 +16,10 @@ import tornadofx.item
 class MapPackerQuickToolExtension : QuickToolExtension {
     override fun applyQuickTool(menu: Menu, cachePath: String) {
         menu.item("Map Packer").action {
-            find<MapPackerFragment>().apply {
-                findXteas(model, this)
-                model.cache.set(CacheLibrary.create(cachePath))
-            }.openModal(block = true, escapeClosesWindow = false)
+            find<MapPackerFragment>(params = mapOf("cache" to CacheLibrary.create(cachePath)))
+                .openModal(block = true, escapeClosesWindow = false)
         }
     }
 
-    private fun findXteas(model: MapPackerModel, fragment: Fragment) {
-        if(model.xteaLocation.get() == null || !model.xteaManager.load(model.xteaLocation.get())) {
-            val fileChooser = FileChooser()
-            val file = fileChooser.showOpenDialog(fragment.currentWindow)
-            model.xteaLocation.set(file.absolutePath)
-            if(!model.xteaManager.load(file.absolutePath)) {
-                findXteas(model, fragment)
-            } else {
-                model.save()
-            }
-        }
-    }
+
 }
