@@ -36,6 +36,9 @@ class ItemConfigsFragment : Fragment() {
             field("Members") {
                 checkbox(property = def.isMembers)
             }
+            field("stackable") {
+                checkbox(property = def.stackable)
+            }
         }
     }
 }

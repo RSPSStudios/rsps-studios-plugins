@@ -8,5 +8,5 @@ rsdeplugin {
     pluginClass.set("com.javatar.plugin.definition.editor.OsrsDefinitionEditor")
     pluginProvider.set("Javatar")
     pluginVersion.set("0.0.6")
-    pluginDescription.set("Definition Editor for Old School RuneScape revision 197")
+    pluginDescription.set("Definition Editor for Old School RuneScape")
 }

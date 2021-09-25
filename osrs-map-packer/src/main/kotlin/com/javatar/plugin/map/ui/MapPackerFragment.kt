@@ -124,8 +124,7 @@ class MapPackerFragment : Fragment("Map Packer") {
         }
         center {
             add<MapTableViewFragment> {
-                find<MapLoadingFragment>()
-                    .openModal(
+                find<MapLoadingFragment>().openModal(
                         stageStyle = StageStyle.UNDECORATED,
                         block = true,
                         escapeClosesWindow = false
@@ -191,8 +190,8 @@ class MapPackerFragment : Fragment("Map Packer") {
         val file = chooseFile(
             "Choose Map File or RSPSi Pack File",
             arrayOf(
-                FileChooser.ExtensionFilter("*.pack"),
-                FileChooser.ExtensionFilter("*.rsmap")
+                FileChooser.ExtensionFilter("RSPSi Pack Files (.pack)", "*.pack"),
+                FileChooser.ExtensionFilter("RSPS Stuidos Map Files (.rsmap)", "*.rsmap")
             )
         ) {
             initialDirectory = File(System.getProperty("user.home"))

@@ -2,6 +2,7 @@ package com.javatar.plugin.map.ui.model
 
 import com.displee.cache.CacheLibrary
 import com.javatar.plugin.map.data.XteaManager
+import javafx.application.Platform
 import javafx.beans.property.*
 import javafx.collections.FXCollections
 import javafx.stage.FileChooser
@@ -73,9 +74,7 @@ class MapPackerModel : ViewModel() {
                             )
                         )
                     }
-                    val t = (index / xteaManager.regionKeys.size)
-                    println(t)
-                    loadingProgress.set(t.toDouble())
+                    loadingProgress.set((index / xteaManager.regionKeys.size).toDouble())
                 }
             } else {
                 println("Scanning regions.")
@@ -135,6 +134,7 @@ class MapPackerModel : ViewModel() {
     fun findXteas(fragment: Fragment) {
         if (xteaLocation.get() == null || !xteaManager.load(xteaLocation.get())) {
             val fileChooser = FileChooser()
+            fileChooser.title = "Choose Xtea File (Json Format)"
             val file = fileChooser.showOpenDialog(fragment.currentWindow)
             xteaLocation.set(file.absolutePath)
             if (!xteaManager.load(file.absolutePath)) {

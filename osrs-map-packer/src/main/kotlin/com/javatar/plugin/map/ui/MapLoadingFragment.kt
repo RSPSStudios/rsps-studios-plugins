@@ -9,11 +9,12 @@ class MapLoadingFragment : Fragment("Loading Maps") {
     val model: MapPackerModel by inject()
 
     override fun onDock() {
-        super.onDock()
+        model.findXteas(this@MapLoadingFragment)
         runAsync {
-            model.findXteas(this@MapLoadingFragment)
             model.findRegions()
-        } ui { close() }
+        } ui {
+            close()
+        }
     }
 
     override val root = vbox {
@@ -34,4 +35,7 @@ class MapLoadingFragment : Fragment("Loading Maps") {
         alignment = Pos.CENTER
     }
 
+    override fun onBeforeShow() {
+
+    }
 }
