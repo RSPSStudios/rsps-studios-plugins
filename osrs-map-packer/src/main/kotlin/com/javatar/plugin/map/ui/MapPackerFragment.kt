@@ -191,7 +191,7 @@ class MapPackerFragment : Fragment("Map Packer") {
             "Choose Map File or RSPSi Pack File",
             arrayOf(
                 FileChooser.ExtensionFilter("RSPSi Pack Files (.pack)", "*.pack"),
-                FileChooser.ExtensionFilter("RSPS Stuidos Map Files (.rsmap)", "*.rsmap")
+                FileChooser.ExtensionFilter("RSPS Studios Map Files (.rsmap)", "*.rsmap")
             )
         ) {
             initialDirectory = File(System.getProperty("user.home"))

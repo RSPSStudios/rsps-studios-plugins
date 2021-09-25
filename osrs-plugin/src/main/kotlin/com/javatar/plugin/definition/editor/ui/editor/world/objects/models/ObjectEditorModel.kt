@@ -184,7 +184,13 @@ class ObjectEditorModel : ViewModel() {
             def.animationID = animationID.get()
             def.varbitID = varbitID.get()
             def.varpID = varpID.get()
-            def.configChangeDest = transformations.toIntArray()
+
+            val trans = transformations.toIntArray()
+            if(trans.isEmpty()) {
+                def.configChangeDest = null
+            } else {
+                def.configChangeDest = trans
+            }
             def.ambient = ambient.get()
             def.contrast = contrast.get()
             def.actions = actions.toTypedArray()

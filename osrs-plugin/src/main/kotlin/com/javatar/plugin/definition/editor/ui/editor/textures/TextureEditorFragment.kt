@@ -60,7 +60,7 @@ class TextureEditorFragment : Fragment("Texture Editor") {
                             }
                             .onEach {
                                 if (it.isNotEmpty()) {
-                                    cache.put(9, 0, it)
+                                    cache.put(9, 0, tex.id, it)
                                     cache.index(9).update()
                                     alert(
                                         Alert.AlertType.INFORMATION,
